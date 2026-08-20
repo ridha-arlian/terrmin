@@ -4,6 +4,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['~/assets/css/tailwind.css'],
+  app: {
+    head: {
+      title: 'Terrmin — zero-friction meeting time finder',
+      meta: [
+        { name: 'description', content: 'Cari titik temu waktu meeting untuk tim remote lintas zona waktu, tanpa login, tanpa database.' },
+      ],
+    },
+  },
   vite: {
     plugins: [
       tailwindcss(),
@@ -11,21 +19,20 @@ export default defineNuxtConfig({
   },
   modules: [
     'shadcn-nuxt',
+    '@vueuse/nuxt',
     // '@nuxt/eslint',
-    // '@nuxt/fonts',
+    '@nuxt/fonts',
     // '@nuxtjs/color-mode',
   ],
   shadcn: {
     prefix: '',
     componentDir: '@/components/ui'
   },
-  // colorMode: {
-  //   classSuffix: ''
-  // },
-  // fonts: {
-  //   families: [
-  //     { name: 'Sansation', provider: 'google' },
-  //     { name: 'Roboto', provider: 'google' },
-  //   ]
-  // },
+  fonts: {
+    families: [
+      { name: 'IBM Plex Sans', provider: 'google' },
+      { name: 'IBM Plex Mono', provider: 'google' },
+      { name: 'Fraunces', provider: 'google'},
+    ]
+  },
 })
