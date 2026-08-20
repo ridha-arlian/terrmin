@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed, ref, onMounted, onUnmounted } from 'vue'
-  import { X } from '@lucide/vue';
+  import { X, Minus } from '@lucide/vue';
   import { Button } from '@/components/ui/button'
   import { getLocalTimeString, getMemberColor } from '@/utils/timezone'
   import type { TeamMember } from '@/utils/timezone'
@@ -34,7 +34,7 @@
         </p>
       </div>
       <p class="text-xs text-muted-foreground mt-0.5">
-        {{ member.timezone }} · {{ member.workStart }}–{{ member.workEnd }}
+        {{ member.timezone }} · {{ member.workStart }}<Minus/>{{ member.workEnd }}
       </p>
     </div>
     <div class="flex items-center gap-3">
