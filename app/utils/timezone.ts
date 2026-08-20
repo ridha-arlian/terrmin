@@ -75,17 +75,18 @@ export function getAllTimezones(): TimezoneOption[] {
 
 export function getLocalHourFraction(timeZone: string, date = new Date()): number {
   try {
-    const parts = new Intl.DateTimeFormat('en-US', {
-      timeZone,
-      hour: '2-digit',
-      minute: '2-digit',
-      hourCycle: 'h23',
-    }).formatToParts(date)
+    const offsetMinutes = getOffsetMinutes(timeZone, date)
 
-    const hour = parseInt(parts.find(p => p.type === 'hour')?.value ?? '0', 10)
-    const minute = parseInt(parts.find(p => p.type === 'minute')?.value ?? '0', 10)
+    const utcHours = date.getUTCHours()
+    const utcMinutes = date.getUTCMinutes()
+    const utcSeconds = date.getUTCSeconds()
 
-    return hour + minute / 60
+    const totalUtcMinutes = utcHours * 60 + utcMinutes + utcSeconds / 60
+
+    let targetMinutes = (totalUtcMinutes + offsetMinutes) % 1440
+    if (targetMinutes < 0) targetMinutes += 1440
+
+    return targetMinutes / 60
   } catch {
     return 0
   }

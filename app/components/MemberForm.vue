@@ -168,7 +168,7 @@
         <FormField v-slot="{ field, errors }" name="workStart">
           <FormItem class="flex-1 sm:w-28 sm:flex-none">
             <FormLabel>
-              Mulai
+              Mulai Kerja
             </FormLabel>
             <Tooltip :open="!!errors.length">
               <TooltipTrigger as-child>
@@ -201,7 +201,7 @@
         <FormField v-slot="{ field, errors }" name="workEnd">
           <FormItem class="flex-1 sm:w-28 sm:flex-none">
             <FormLabel>
-              Selesai
+              Selesai Kerja
             </FormLabel>
             <Tooltip :open="!!errors.length">
               <TooltipTrigger as-child>

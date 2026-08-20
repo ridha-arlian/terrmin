@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { ScrollArea } from '@/components/ui/scroll-area'
   import { getLocalTimeString } from '@/utils/timezone'
   import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from '@/components/ui/empty'
   import { Separator } from '@/components/ui/separator'
@@ -49,7 +48,9 @@
       </header>
 
       <section>
-        <NowTimeline :members="members" :user-timezone="userTimezone" />
+        <ClientOnly>
+          <NowTimeline :members="members" :user-timezone="userTimezone" />
+        </ClientOnly>
       </section>
 
       <section v-if="members.length > 0">
@@ -58,18 +59,18 @@
 
       <section class="space-y-4">
         <p class="text-sm font-medium font-display text-primary">
-          Anggota tim
+          Anggota Tim
         </p>
 
         <div v-if="members.length === 0" class="space-y-4">
-          <Empty class="rounded-lg border bg-card p-6">
+          <Empty class="rounded-lg border bg-card p-4">
             <EmptyHeader class="mb-4">
               <EmptyTitle>Belum ada anggota tim</EmptyTitle>
               <EmptyDescription>
                 Tambahkan anggota tim pertama kamu di bawah ini.
               </EmptyDescription>
             </EmptyHeader>
-            <MemberForm @add="addMember" />
+            <MemberForm class="w-full" @add="addMember" />
           </Empty>
         </div>
 
